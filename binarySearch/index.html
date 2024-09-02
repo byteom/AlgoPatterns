@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">DSA Visualizer</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Bubble Sort</a></li>
+                <li><a href="#">Insertion Sort</a></li>
+                <li><a href="#">Binary Search</a></li>
+                <li><a href="#">Merge Sort</a></li>
+                <li><a href="#">Quick Sort</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Binary Search Visualization in C++</h1>
+
+        <div class="code-section">
+            <pre><code id="code-display">
+#include &lt;iostream&gt;
+
+int binarySearch(int arr[], int l, int r, int x) {
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+
+        // Check if x is present at mid
+        if (arr[m] == x)
+            return m;
+
+        // If x greater, ignore left half
+        if (arr[m] < x)
+            l = m + 1;
+
+        // If x is smaller, ignore right half
+        else
+            r = m - 1;
+    }
+
+    // If element is not present in array
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 10;
+    int result = binarySearch(arr, 0, n - 1, x);
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <div class="input-section">
+            <label for="array-input">Enter a sorted array (comma separated):</label>
+            <input type="text" id="array-input" value="2,3,4,10,40">
+            <label for="key-input">Enter the search key:</label>
+            <input type="text" id="key-input" value="10">
+            <label for="size-input">Generate Random Array Size:</label>
+            <input type="number" id="size-input" value="5" min="2" max="20">
+            <button id="generate-array-btn">Generate Array</button>
+        </div>
+
+        <div class="mode-selection">
+            <button id="manual-mode-btn">Manual Mode</button>
+            <button id="automatic-mode-btn">Automatic Mode</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+
+        <div id="manual-controls" class="controls hidden">
+            <button id="previous-step-btn">Previous Step</button>
+            <button id="next-step-btn">Next Step</button>
+        </div>
+
+        <div id="automatic-controls" class="controls hidden">
+            <button id="start-stop-btn">Start Search</button>
+            <div class="speed-control">
+                <label for="speed-slider">Animation Speed:</label>
+                <input type="range" id="speed-slider" min="100" max="30000" value="500">
+                <span id="speed-value">500 ms</span>
+            </div>
+        </div>
+
+        <div class="visualization-section">
+            <h2>Array Visualization:</h2>
+            <div id="array-container"></div>
+            <div id="pointer-container">
+                <span id="left-pointer">L</span>
+                <span id="middle-pointer">M</span>
+                <span id="right-pointer">R</span>
+            </div>
+        </div>
+
+        <div class="status-section">
+            <p id="search-status">Search Status: Not Started</p>
+            <p id="time-elapsed">Time Elapsed: 0s</p>
+        </div>
+
+        <div class="line-explanation">
+            <h2>Current Line Explanation:</h2>
+            <p id="line-explanation"></p>
+        </div>
+
+        <div class="summary-section hidden">
+            <h2>Search Summary</h2>
+            <p id="summary-description"></p>
+            <button id="download-summary-btn">Download Summary</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 DSA Visualizer. All rights reserved. | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

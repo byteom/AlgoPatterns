@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">DSA Visualizer</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Bubble Sort</a></li>
+                <li><a href="#">Insertion Sort</a></li>
+                <li><a href="#">Merge Sort</a></li>
+                <li><a href="#">Quick Sort</a></li>
+                <li><a href="#">Linked List</a></li>
+                <li><a href="#">Graph Algorithms</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Insertion Sort Visualization in C++</h1>
+
+        <div class="code-section">
+            <pre><code id="code-display">
+#include &lt;iostream&gt;
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int arr[] = {5, 1, 4, 2, 8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    insertionSort(arr, n);
+    return 0;
+}
+            </code></pre>
+        </div>
+
+        <div class="input-section">
+            <label for="array-input">Enter an array (comma separated):</label>
+            <input type="text" id="array-input" value="5,1,4,2,8">
+        </div>
+
+        <div class="mode-selection">
+            <button id="manual-mode-btn">Manual Mode</button>
+            <button id="automatic-mode-btn">Automatic Mode</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+
+        <div id="manual-controls" class="controls hidden">
+            <button id="previous-step-btn">Previous Step</button>
+            <button id="next-step-btn">Next Step</button>
+        </div>
+
+        <div id="automatic-controls" class="controls hidden">
+            <button id="start-stop-btn">Start Sorting</button>
+            <div class="speed-control">
+                <label for="speed-slider">Animation Speed:</label>
+                <input type="range" id="speed-slider" min="100" max="30000" value="500">
+                <span id="speed-value">500 ms</span>
+            </div>
+        </div>
+
+        <div class="visualization-section">
+            <h2>Array Visualization:</h2>
+            <div id="array-container"></div>
+        </div>
+
+        <div class="status-section">
+            <p id="swap-count">Swaps: 0</p>
+            <p id="time-elapsed">Time Elapsed: 0s</p>
+        </div>
+
+        <div class="line-explanation">
+            <h2>Current Line Explanation:</h2>
+            <p id="line-explanation"></p>
+        </div>
+
+        <div class="summary-section hidden">
+            <h2>Sorting Summary</h2>
+            <p id="summary-description"></p>
+            <button id="download-summary-btn">Download Summary</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 DSA Visualizer. All rights reserved. | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
